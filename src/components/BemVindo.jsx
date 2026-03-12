@@ -10,7 +10,6 @@ const BemVindo = ({ nomeUsuario, totalHabitos }) => {
     <div>
       <h2>Olá, {nomeFormatado}!</h2>
       <p>{mensagem}</p>
-      <p> Hoje são: {new Date().toLocaleDateString()} </p>
     </div>
   );
 }
