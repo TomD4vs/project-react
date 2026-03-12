@@ -1,15 +1,17 @@
 import "./App.css";
-import Footer from "./components/footer";
-import Info from "./components/Info";
-import Img from "./components/imgUrl";
+import Footer from "./components/Footer";
+import Img from "./components/ImgUrl";
+import Header from "./components/Header";
+import BemVindo from "./components/BemVindo";
 
 function App() {
   
   return (
     <>
-      <div className="Aplication-react">
-        <Info />
+      <div className="AplicationReact">
+        <Header titulo="My daily Habits" descricao="Gerencie seus habitos diarios de forma simples e visual" />
         <Img />
+        <BemVindo nomeUsuario="Tom" totalHabitos={2} />
         <Footer />
       </div>
     </>
