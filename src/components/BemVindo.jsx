@@ -12,6 +12,6 @@ const BemVindo = ({ nomeUsuario, totalHabitos }) => {
       <p>{mensagem}</p>
     </div>
   );
-};
+}
 
 export default BemVindo;
