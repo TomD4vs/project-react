@@ -41,7 +41,7 @@ http://localhost:5173
 
 ---
 
-## 📁 Estrutura do projeto (exemplo)
+## 📁 Estrutura do projeto
 
 ```
 src/
@@ -50,6 +50,12 @@ src/
  ├── hooks/
  ├── services/
  └── App.jsx
+```
+
+## Versão do Node.js
+
+```
+v24.14.0
 ```
 
 ---
