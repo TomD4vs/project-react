@@ -58,11 +58,7 @@ src/
 
 ## 🟢 Versão do Node.js
 
-```
-
 ![Node.js](https://img.shields.io/badge/node-24.14.0-339933?logo=node.js&logoColor=white)
-
-```
 
 ---
 
