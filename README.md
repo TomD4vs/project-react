@@ -1,5 +1,9 @@
 # React + Vite - Boas Práticas com React
 
+![Node.js](https://img.shields.io/badge/node-24.14.0-339933?logo=node.js&logoColor=white)
+![React](https://img.shields.io/badge/react-19-blue?logo=react)
+![Vite](https://img.shields.io/badge/vite-5-purple?logo=vite)
+
 Este projeto é uma aplicação criada com **React** utilizando **Vite** como ferramenta de build e desenvolvimento.
 
 O objetivo do projeto é aplicar e demonstrar **boas práticas no desenvolvimento com React**, incluindo organização de componentes, estrutura de pastas e padrões recomendados.
@@ -41,7 +45,7 @@ http://localhost:5173
 
 ---
 
-## 📁 Estrutura do projeto
+## 📁 Estrutura do projeto (exemplo)
 
 ```
 src/
@@ -52,10 +56,12 @@ src/
  └── App.jsx
 ```
 
-## Versão do Node.js
+## 🟢 Versão do Node.js
 
 ```
-v24.14.0
+
+![Node.js](https://img.shields.io/badge/node-24.14.0-339933?logo=node.js&logoColor=white)
+
 ```
 
 ---
