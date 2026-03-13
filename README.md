@@ -45,7 +45,7 @@ http://localhost:5173
 
 ---
 
-## 📁 Estrutura do projeto (exemplo)
+## 📁 Estrutura do projeto
 
 ```
 src/
@@ -53,12 +53,15 @@ src/
  ├── pages/
  ├── hooks/
  ├── services/
- └── App.jsx
+ └── App.jsx---
 ```
+
+---
 
 ## 🟢 Versão do Node.js
 
 ![Node.js](https://img.shields.io/badge/node-24.14.0-339933?logo=node.js&logoColor=white)
+
 
 ---
 
