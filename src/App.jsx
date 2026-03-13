@@ -7,13 +7,7 @@ import SecaoHabitos from "./components/SecaoHabitos";
 import HabitList from "./components/HabitList";
 
 function App() {
-  const habits = [
-    { id: 1, titulo: "Drink Water", meta: 5, ativo: true, diasFeitos: 5 },
-    { id: 2, titulo: "Exercise", meta: 1, ativo: false, diasFeitos: 3 },
-    { id: 3, titulo: "Meditação", meta: 3, ativo: true, diasFeitos: 2 },
-    { id: 4, titulo: "Hidratação", meta: 4, ativo: false, diasFeitos: 6 },
-  ];
-
+  
   return (
     <>
       <div className="AplicationReact">
@@ -22,10 +16,10 @@ function App() {
           descricao="Gerencie seus habitos diarios de forma simples e visual"
         />
         <Img />
-        <BemVindo nomeUsuario="Tom" totalHabitos={habits.length} />
+        <BemVindo nomeUsuario="Tom" />
 
         <SecaoHabitos titulo="Meus Habitos">
-          <HabitList habits={habits} />
+          <HabitList/>
         </SecaoHabitos>
         <Footer />
       </div>
