@@ -16,7 +16,6 @@ O objetivo do projeto é aplicar e demonstrar **boas práticas no desenvolviment
 <br>
 
 [![▶ Acessar Projeto](https://img.shields.io/badge/▶%20ACESSAR%20PROJETO-2ea043?style=for-the-badge&logoColor=white)](https://tomd4vs.github.io/project-react/)
-[![Status](https://img.shields.io/badge/STATUS-ONLINE%20✔-2ea043?style=for-the-badge)]()
 [![Deploy](https://img.shields.io/badge/DEPLOY-GITHUB%20PAGES-0d1117?style=for-the-badge&logo=github&logoColor=white)](https://tomd4vs.github.io/project-react/)
 
 
