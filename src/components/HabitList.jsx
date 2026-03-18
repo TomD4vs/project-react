@@ -21,7 +21,6 @@ function HabitList({ }) {
     })
 
 
-    //conceitos de useEffect
     useEffect(() => {
         localStorage.setItem('my-daily-habits', JSON.stringify(habits))
     }, [habits])
@@ -37,7 +36,7 @@ function HabitList({ }) {
     })
 
 
-    const { novoNome, novaDescricao, novaMeta, novaCategoria } = form
+    //const { novoNome, novaDescricao, novaMeta, novaCategoria } = form
 
     const [erroNome, setErroNome] = useState('')
     const [erroMeta, setErroMeta] = useState('')
@@ -71,7 +70,7 @@ function HabitList({ }) {
     const adicionarHabit = (event) => {
         event.preventDefault()
 
-        if (!novoNome.trim()) {
+        if (!form.novoNome.trim()) {
             alert('Informe o nome para o habito.')
             return
         }
@@ -88,12 +87,12 @@ function HabitList({ }) {
 
         const novoHabit = {
             id: Date.now(),
-            nome: novoNome,
-            descricao: novaDescricao,
-            meta: novaMeta,
+            nome: form.novoNome,
+            descricao: form.novaDescricao,
+            meta: form.novaMeta,
             ativo: true,
             diasFeitos: 0,
-            categoria: novaCategoria || 'Geral',
+            categoria: form.novaCategoria || 'Geral',
         }
 
         setHabits(prev => [...prev, novoHabit])
@@ -105,23 +104,18 @@ function HabitList({ }) {
         })
 
         // Devolve o foco para o campo nome — useRef em ação
-        nomeInputRef.current?.focus(),
-        metaInputRef.current?.focus()
+        nomeInputRef.current?.focus()
     }
 
 
     const removerHabit = (id) => {
         setHabits(habits.filter(habit => habit.id !== id))
-
     }
 
 
     const limparHistorico = () => {
         localStorage.removeItem('my-daily-habits')
-        setHabits([
-            { id: 1, nome: "Exercício", descricao: 'Treino de Força', meta: 5, ativo: true, diasFeitos: 5 },
-            { id: 2, nome: "Leitura", descricao: 'Livro ou artigo', meta: 1, ativo: false, diasFeitos: 3 },
-        ])
+        setHabits([])
     }
 
 
@@ -135,7 +129,7 @@ function HabitList({ }) {
                         <input
                             type="text"
                             name="novoNome"
-                            value={novoNome}
+                            value={form.novoNome}
                             onChange={handleChange}
                             ref={nomeInputRef}
                         />
@@ -149,7 +143,7 @@ function HabitList({ }) {
                     <input
                         type="text"
                         name="novaDescricao"
-                        value={novaDescricao}
+                        value={form.novaDescricao}
                         onChange={handleChange}
                     />
                 </div>
@@ -161,7 +155,9 @@ function HabitList({ }) {
                     <input
                         type="number"
                         name="novaMeta"
-                        value={novaMeta}
+                        min="1"
+                        max="7"
+                        value={form.novaMeta}
                         ref={metaInputRef}
                         onChange={handleChange}
                     />
@@ -171,14 +167,13 @@ function HabitList({ }) {
                 <div>
                     <label>
                         Categoria
-
-                        <input
-                            type="text"
-                            name="novaCategoria"
-                            value={novaCategoria}
-                            onChange={handleChange}
-                        />
                     </label>
+                    <input
+                        type="text"
+                        name="novaCategoria"
+                        value={form.novaCategoria}
+                        onChange={handleChange}
+                    />
                 </div>
                 <button type="submit">Adicionar hábito</button>
             </form>
