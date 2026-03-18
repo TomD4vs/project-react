@@ -10,7 +10,7 @@ function App() {
   
   return (
     <>
-      <div className="AplicationReact">
+      <div className="AplicationReact" style={{ width: '100%' }}>
         <Header
           titulo="My daily Habits"
           descricao="Gerencie seus habitos diarios de forma simples e visual"

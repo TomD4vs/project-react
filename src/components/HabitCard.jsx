@@ -14,21 +14,21 @@ function HabitCard({
         : `${diasFeitos} de ${meta} dias concluídos.`;
 
     return (
-        <div className="habit-card">
+        <li className="habit-card">
             <h3>{nome}</h3>
             {descricao && <p>{descricao}</p>}
-            <p>{mensagemMeta}</p>
-            <p>Categoria: {categoria}</p>
-            <span>{ativo ? '✅ Ativo' : '⏸️ Pausado'}</span>
-            {metaAtingida && <p>Parabéns! Você manteve a sequência essa semana !🎉</p>}
-
+            <div className="card-meta">
+                <span className="card-badge">{categoria}</span>
+                <span className="card-status">{ativo ? '✅ Ativo' : '⏸️ Pausado'}</span>
+                <span className="card-status">{mensagemMeta}</span>
+            </div>
+            {metaAtingida && <p>🎉 Parabéns! Você manteve a sequência essa semana!</p>}
             {onRemover && (
                 <button type="button" onClick={onRemover}>
                     Remover
                 </button>
             )}
-
-        </div>
+        </li>
     );
 }
 

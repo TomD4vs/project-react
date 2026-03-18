@@ -123,66 +123,34 @@ function HabitList({ }) {
 
         <section>
             <form onSubmit={adicionarHabit} className="habit-form">
-                <div>
-                    <label>
-                        Nome do hábito *
-                        <input
-                            type="text"
-                            name="novoNome"
-                            value={form.novoNome}
-                            onChange={handleChange}
-                            ref={nomeInputRef}
-                        />
-                    </label>
-                    {erroNome && <p style={{ color: 'red', fontSize: '0.8rem' }}>{erroNome}</p>}
-                </div>
-                <div>
-                    <label>
-                        Descrição
-                    </label>
-                    <input
-                        type="text"
-                        name="novaDescricao"
-                        value={form.novaDescricao}
-                        onChange={handleChange}
-                    />
-                </div>
-
-                <div>
-                    <label>
-                        Meta
-                    </label>
-                    <input
-                        type="number"
-                        name="novaMeta"
-                        min="1"
-                        max="7"
-                        value={form.novaMeta}
-                        ref={metaInputRef}
-                        onChange={handleChange}
-                    />
-                    {erroMeta && <p style={{ color: 'red', fontSize: '0.8rem' }}>{erroMeta}</p>}
-                </div>
-
-                <div>
-                    <label>
-                        Categoria
-                    </label>
-                    <input
-                        type="text"
-                        name="novaCategoria"
-                        value={form.novaCategoria}
-                        onChange={handleChange}
-                    />
+                <div className="form-grid">
+                    <div className="full-width">
+                        <label>Nome do hábito *</label>
+                        <input type="text" name="novoNome" value={form.novoNome} onChange={handleChange} ref={nomeInputRef} />
+                        {erroNome && <p style={{ color: 'red', fontSize: '0.8rem' }}>{erroNome}</p>}
+                    </div>
+                    <div className="full-width">
+                        <label>Descrição</label>
+                        <input type="text" name="novaDescricao" value={form.novaDescricao} onChange={handleChange} />
+                    </div>
+                    <div>
+                        <label>Meta</label>
+                        <input type="number" name="novaMeta" min="1" max="7" value={form.novaMeta} ref={metaInputRef} onChange={handleChange} />
+                        {erroMeta && <p style={{ color: 'red', fontSize: '0.8rem' }}>{erroMeta}</p>}
+                    </div>
+                    <div>
+                        <label>Categoria</label>
+                        <input type="text" name="novaCategoria" value={form.novaCategoria} onChange={handleChange} />
+                    </div>
                 </div>
                 <button type="submit">Adicionar hábito</button>
             </form>
 
             <ul>
-                <button onClick={limparHistorico}>Limpar Historico</button>
+                <button className="btn-limpar" onClick={limparHistorico}>Limpar Histórico</button>
                 {habits.length === 0
                     ? <p>Nenhum hábito cadastrado ainda. Que tal começar?</p>
-                    : <p>Você tem {habits.length} hábito(s) cadastrado(s).</p>
+                    : <p className="habits-count">Você tem {habits.length} hábito(s) cadastrado(s).</p>
                 }
 
 
