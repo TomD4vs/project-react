@@ -30,7 +30,7 @@ function HabitCard({ id, nome, descricao, meta, ativo = true, diasFeitos = 0, ca
                 </Link>
 
                 {onRemover && (
-                    <button type="button" onClick={onRemover}>Remover</button>
+                    <button type="button" className="btn-remover" onClick={onRemover}>Remover</button>
                 )}
                 {onToggle && (
                     <button type="button" onClick={onToggle}>
