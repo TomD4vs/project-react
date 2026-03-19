@@ -1,10 +1,10 @@
 import { useEffect, useState, useRef } from "react";
 import HabitCard from "./HabitCard";
-import { useHabits } from "../contexts/habitsContext";
+import { useHabits } from "../contexts/HabitsContext";
 
 function HabitList({ }) {
 
-    const {habits, adicionarHabit, removerHabit, limparHabits} = useHabits()
+    const {habits, adicionarHabit, removerHabit, toggleAtivo, limparHabits} = useHabits()
 
 
     useEffect(() => {
@@ -29,7 +29,6 @@ function HabitList({ }) {
     const handleChange = (e) => {
         const { name, value } = e.target
 
-        // atualiza o objeto `form` (sem precisar de vários useState separados)
         setForm(prev => ({ ...prev, [name]: value }))
 
         if (name === 'novoNome') {
@@ -55,12 +54,10 @@ function HabitList({ }) {
         event.preventDefault()
 
         if (!form.novoNome.trim() || erroNome) {
-             // Devolve o foco para o campo nome — useRef em ação
             nomeInputRef.current?.focus()
             return
         }
 
-        // Bloqueia se há erro de validação (qualquer um)
         if (erroNome || erroMeta) {
             if (erroNome) {
                 nomeInputRef.current?.focus()
@@ -145,6 +142,7 @@ function HabitList({ }) {
                         categoria={habit.categoria}
                         diasFeitos={habit.diasFeitos}
                         onRemover={() => removerHabit(habit.id)}
+                        onToggle={() => toggleAtivo(habit.id)}
                     />
                 ))}
             </ul>
