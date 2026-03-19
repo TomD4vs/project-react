@@ -1,24 +1,10 @@
 import { useEffect, useState, useRef } from "react";
 import HabitCard from "./HabitCard";
+import { useHabits } from "../contexts/habitsContext";
 
 function HabitList({ }) {
 
-    const [habits, setHabits] = useState(() => {
-        const stored = localStorage.getItem('my-daily-habits')
-
-        if (!stored) return [
-            { id: 1, nome: "Exercício", descricao: 'Treino de Força', meta: 5, ativo: true, diasFeitos: 5 },
-            { id: 2, nome: "Leitura", descricao: 'Livro ou artigo', meta: 1, ativo: false, diasFeitos: 3 },
-            { id: 3, nome: "Meditação", descricao: 'Respiração e foco', meta: 3, ativo: true, diasFeitos: 2 },
-            { id: 4, nome: "Hidratação", descricao: 'Beber 2L de água', meta: 4, ativo: false, diasFeitos: 6 },
-        ]
-
-        try {
-            return JSON.parse(stored)
-        } catch {
-            return []
-        }
-    })
+    const {habits, adicionarHabit, removerHabit, limparHabits} = useHabits()
 
 
     useEffect(() => {
@@ -26,8 +12,6 @@ function HabitList({ }) {
     }, [habits])
 
 
-    const nomeInputRef = useRef(null)
-    const metaInputRef = useRef(null)
     const [form, setForm] = useState({
         novoNome: '',
         novaDescricao: '',
@@ -36,7 +20,8 @@ function HabitList({ }) {
     })
 
 
-    //const { novoNome, novaDescricao, novaMeta, novaCategoria } = form
+    const nomeInputRef = useRef(null)
+    const metaInputRef = useRef(null)
 
     const [erroNome, setErroNome] = useState('')
     const [erroMeta, setErroMeta] = useState('')
@@ -66,12 +51,12 @@ function HabitList({ }) {
 
     }
 
-
-    const adicionarHabit = (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault()
 
-        if (!form.novoNome.trim()) {
-            alert('Informe o nome para o habito.')
+        if (!form.novoNome.trim() || erroNome) {
+             // Devolve o foco para o campo nome — useRef em ação
+            nomeInputRef.current?.focus()
             return
         }
 
@@ -95,34 +80,30 @@ function HabitList({ }) {
             categoria: form.novaCategoria || 'Geral',
         }
 
-        setHabits(prev => [...prev, novoHabit])
+        //setHabits(prev => [...prev, novoHabit])
+        adicionarHabit(novoHabit)
         setForm({
             novoNome: '',
             novaDescricao: '',
             novaMeta: '',
             novaCategoria: '',
+            
         })
 
-        // Devolve o foco para o campo nome — useRef em ação
+        setErroNome('')
         nomeInputRef.current?.focus()
     }
 
-
-    const removerHabit = (id) => {
-        setHabits(habits.filter(habit => habit.id !== id))
-    }
-
-
     const limparHistorico = () => {
         localStorage.removeItem('my-daily-habits')
-        setHabits([])
+        limparHabits()
     }
 
 
     return (
 
         <section>
-            <form onSubmit={adicionarHabit} className="habit-form">
+            <form onSubmit={handleSubmit} className="habit-form">
                 <div className="form-grid">
                     <div className="full-width">
                         <label>Nome do hábito *</label>
