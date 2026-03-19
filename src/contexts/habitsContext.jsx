@@ -4,7 +4,6 @@ const HabitsContext = createContext(null)
 
 export function HabitsProvider({ children }) {
     const [habits, setHabits] = useState(() => {
-
         const stored = localStorage.getItem('my-daily-habits')
         if (!stored) return [
             { id: 1, nome: "Exercício", descricao: 'Treino de Força', meta: 5, ativo: true, diasFeitos: 5 },
@@ -19,15 +18,15 @@ export function HabitsProvider({ children }) {
         }
     })
 
+    useEffect(() => {
+        localStorage.setItem('my-daily-habits', JSON.stringify(habits))
+    }, [habits])
+
     const toggleAtivo = (id) => {
         setHabits(prev =>
             prev.map(h => h.id === id ? { ...h, ativo: !h.ativo } : h)
         )
     }
-
-    useEffect(() => {
-        localStorage.setItem('my-daily-habits', JSON.stringify(habits))
-    }, [habits])
 
     const adicionarHabit = (novoHabit) => {
         setHabits(prev => [...prev, novoHabit])
@@ -41,9 +40,14 @@ export function HabitsProvider({ children }) {
         setHabits([])
     }
 
+    const editarHabit = (id, dadosAtualizados) => {
+        setHabits(prev =>
+            prev.map(h => h.id === id ? { ...h, ...dadosAtualizados } : h)
+        )
+    }
 
     return (
-        <HabitsContext.Provider value={{ habits, adicionarHabit, removerHabit, toggleAtivo, limparHabits }}>
+        <HabitsContext.Provider value={{ habits, adicionarHabit, removerHabit, toggleAtivo, limparHabits, editarHabit }}>
             {children}
         </HabitsContext.Provider>
     )
