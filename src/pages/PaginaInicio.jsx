@@ -8,7 +8,7 @@ function PaginaInicio() {
 
     return (
         <main className="pagina-inicio">
-            <h1>Meus Habitos diários</h1>
+            <h1>Meus Hábitos Diários</h1>
             <p>Construindo uma rotina melhor, um hábito por vez.</p>
 
             <div className="resumo">

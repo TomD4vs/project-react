@@ -6,7 +6,7 @@ function Header() {
         <header className="header">
             <div className="header-logo">
                 <span>📋</span>
-                <strong>Meus Habitos diários</strong>
+                <strong>Meus Hábitos Diários</strong>
             </div>
 
             <nav className="header-nav">
