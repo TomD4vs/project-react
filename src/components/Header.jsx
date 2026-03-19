@@ -1,10 +1,34 @@
-function Header({titulo, descricao}) {
+
+import { NavLink } from 'react-router-dom'
+
+function Header() {
     return (
-        <div>
-            <h1>{titulo}</h1>
-            <p>{descricao}</p>
-        </div>   
+        <header className="header">
+            <div className="header-logo">
+                <span>📋</span>
+                <strong>Meus Habitos diários</strong>
+            </div>
+
+            <nav className="header-nav">
+                <NavLink
+                    to="/"
+                    end
+                    className={({ isActive }) => isActive ? 'nav-link ativo' : 'nav-link'}
+                >
+                    Início
+                </NavLink>
+
+                <NavLink
+                    to="/habitos"
+                    className={({ isActive }) => isActive ? 'nav-link ativo' : 'nav-link'}
+                >
+                    Hábitos
+                </NavLink>
+            </nav>
+        </header>
     )
 }
 
-export default Header;
+export default Header
+
+

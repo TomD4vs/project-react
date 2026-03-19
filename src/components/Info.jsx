@@ -4,7 +4,7 @@ function Info() {
   
   return (
     <div className="Info">
-      <h1>My daily Habits</h1>
+      <h1>Meus Habitos diários</h1>
       <p>Olá, {newName}!</p>
       <p>Gerencie seus habitos diarios de forma simples e visual</p>
     </div>
