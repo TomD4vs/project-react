@@ -1,16 +1,11 @@
-import { useEffect, useState, useRef } from "react";
+import { useState, useRef } from "react";
+import { useNavigate } from 'react-router-dom'
 import HabitCard from "./HabitCard";
 import { useHabits } from "../contexts/HabitsContext";
 
-function HabitList({ }) {
-
-    const {habits, adicionarHabit, removerHabit, toggleAtivo, limparHabits} = useHabits()
-
-
-    useEffect(() => {
-        localStorage.setItem('my-daily-habits', JSON.stringify(habits))
-    }, [habits])
-
+function HabitList() {
+    const { habits, adicionarHabit, removerHabit, toggleAtivo, limparHabits } = useHabits()
+    const navigate = useNavigate()
 
     const [form, setForm] = useState({
         novoNome: '',
@@ -18,7 +13,6 @@ function HabitList({ }) {
         novaMeta: '',
         novaCategoria: '',
     })
-
 
     const nomeInputRef = useRef(null)
     const metaInputRef = useRef(null)
@@ -28,7 +22,6 @@ function HabitList({ }) {
 
     const handleChange = (e) => {
         const { name, value } = e.target
-
         setForm(prev => ({ ...prev, [name]: value }))
 
         if (name === 'novoNome') {
@@ -47,7 +40,6 @@ function HabitList({ }) {
                 setErroMeta('')
             }
         }
-
     }
 
     const handleSubmit = (event) => {
@@ -71,23 +63,16 @@ function HabitList({ }) {
             id: Date.now(),
             nome: form.novoNome,
             descricao: form.novaDescricao,
-            meta: form.novaMeta,
+            meta: Number(form.novaMeta),
             ativo: true,
             diasFeitos: 0,
             categoria: form.novaCategoria || 'Geral',
         }
 
-        //setHabits(prev => [...prev, novoHabit])
         adicionarHabit(novoHabit)
-        setForm({
-            novoNome: '',
-            novaDescricao: '',
-            novaMeta: '',
-            novaCategoria: '',
-            
-        })
-
+        setForm({ novoNome: '', novaDescricao: '', novaMeta: '', novaCategoria: '' })
         setErroNome('')
+        setErroMeta('')
         nomeInputRef.current?.focus()
     }
 
@@ -96,9 +81,7 @@ function HabitList({ }) {
         limparHabits()
     }
 
-
     return (
-
         <section>
             <form onSubmit={handleSubmit} className="habit-form">
                 <div className="form-grid">
@@ -112,7 +95,7 @@ function HabitList({ }) {
                         <input type="text" name="novaDescricao" value={form.novaDescricao} onChange={handleChange} />
                     </div>
                     <div>
-                        <label>Meta</label>
+                        <label>Meta (dias por semana)</label>
                         <input type="number" name="novaMeta" min="1" max="7" value={form.novaMeta} ref={metaInputRef} onChange={handleChange} />
                         {erroMeta && <p style={{ color: 'red', fontSize: '0.8rem' }}>{erroMeta}</p>}
                     </div>
@@ -131,10 +114,10 @@ function HabitList({ }) {
                     : <p className="habits-count">Você tem {habits.length} hábito(s) cadastrado(s).</p>
                 }
 
-
                 {habits.map((habit) => (
                     <HabitCard
                         key={habit.id}
+                        id={habit.id}
                         nome={habit.nome}
                         descricao={habit.descricao}
                         meta={habit.meta}
@@ -147,6 +130,7 @@ function HabitList({ }) {
                 ))}
             </ul>
         </section>
-    );
+    )
 }
+
 export default HabitList;
